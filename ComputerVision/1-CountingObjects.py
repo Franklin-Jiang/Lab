@@ -1,46 +1,10 @@
 # %%
-import cv2, copy, sys
-import numpy as np
-import matplotlib.pyplot as plt
-
-np.set_printoptions(threshold=sys.maxsize)
-
-
-def imshow(img):
-    """展示图像"""
-    # cv2.imshow(caption, img)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-
-    # 将BGR图像转换为RGB图像
-    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    # 显示图像
-    plt.imshow(img_rgb)
-    plt.axis("off")  # 去除坐标轴
-
-
-
-def im_replace(img: np.array, _from, _to, not_equal=False):
-    """_from 填诸如 [255,255,0]；_to 填诸如 [0,0,0]；not_equal 是不等条件，默认为 False 表等于条件，若为 True，则替换掉满足不等条件的元素"""
-    # 获取深层拷贝
-    img = copy.deepcopy(img)
-    # 获取数组的形状
-    shape = img.shape
-    img_flatten = img.reshape((shape[0] * shape[1], shape[2]))
-    # 进行替换
-    if not_equal:
-        img_flatten[np.any(img_flatten != _from, axis=1)] = _to
-    else:
-        img_flatten[np.all(img_flatten == _from, axis=1)] = _to
-    img = img_flatten.reshape((shape[0], shape[1], shape[2]))
-    # print(img_flatten)
-    imshow(img)
-    return img
+from tool import *
 
 
 # 读取图像（第二个参数0表示以灰度图像方式读取图像）
-img = cv2.imread("D:\\Codes\\VSCode_MATLAB\\Lab2\\counting_objects_rgb.png")
-imshow(img)
+img = cv2.imread("src/1. counting_objects_rgb.png")
+imshow(img, OpenCV=True)
 
 
 # %%
@@ -59,7 +23,7 @@ img_flatten[np.all(img_flatten == [255, 255, 0], axis=1)] = [255, 255, 255]
 # imshow(img)
 
 # %%
-np.array([255,255,255]).shape
+np.array([255, 255, 255]).shape
 
 # %%
 # # 将彩色图像转换为灰度图像
