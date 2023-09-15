@@ -88,3 +88,21 @@ class UnionFind:
     # 判断是否属于同一个集合
     def same(self, x, y):
         return self.find(x) == self.find(y)
+
+
+def ndarr_2dim_val(ndarr, i, j, default_val=0):
+    shape = ndarr.shape
+    n, m = shape[0], shape[1]
+
+    # 越界返回默认值
+    if i < 0 or i >= n or j < 0 or j >= m:
+        return default_val
+    else:
+        return ndarr[i, j]
+
+    try:
+        # 需要考虑负值的情况
+        result = ndarr[i, j]
+    except IndexError:
+        result = default_val
+    return result
