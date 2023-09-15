@@ -10,8 +10,6 @@ img = im_replace(img, (255, 255, 255), (0, 0, 0), not_equal=True)
 
 # %%
 
-neighbour = 8
-
 
 def calcNumObjects(img, neighbour=4):
     # 初始化并查集
