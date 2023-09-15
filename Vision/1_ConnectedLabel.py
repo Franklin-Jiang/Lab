@@ -75,8 +75,6 @@ for i in range(M):
                 if a and b:
                     ufs.merge(a, b)
 
-print(I)
-
 # 第二遍
 for i in range(M):
     for j in range(N):
@@ -84,7 +82,5 @@ for i in range(M):
         if img[i, j] == 0:
             # print(I[i, j], ufs.find(I[i, j]))
             I[i, j] = ufs.find(I[i, j])
-
-print(I)
 
 print("Number of objects:", len(set(ufs.parent.values())))
