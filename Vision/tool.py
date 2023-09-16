@@ -7,10 +7,10 @@ from PIL import Image
 np.set_printoptions(threshold=sys.maxsize)
 
 
-def imshow(img):
+def imshow(img, OpenCV=True):
     """展示图像"""
     # 如果展示的是 OpenCV 的图像
-    if type(img) == type(np.array([])):
+    if OpenCV and type(img) == type(np.array([])) and img.ndim == 3:
         # 则要将 OpenCV 的 BGR 图像转换为 RGB 图像
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     plt.imshow(img)
