@@ -13,7 +13,10 @@ def imshow(img, OpenCV=True):
     if OpenCV and type(img) == type(np.array([])) and img.ndim == 3:
         # 则要将 OpenCV 的 BGR 图像转换为 RGB 图像
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    plt.imshow(img)
+    if type(img) == type(np.array([])) and img.ndim == 3:
+        plt.imshow(img)
+    elif type(img) == type(np.array([])) and img.ndim == 2:
+        plt.imshow(img, cmap="gray")
     plt.axis("off")  # 去除坐标轴
 
 
