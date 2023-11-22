@@ -8,20 +8,24 @@ np.set_printoptions(threshold=sys.maxsize)
 
 
 def imshow(img, OpenCV=True):
-    """展示图像"""
-    # 如果展示的是 OpenCV 的图像
-    if OpenCV and type(img) == type(np.array([])) and img.ndim == 3:
-        # 则要将 OpenCV 的 BGR 图像转换为 RGB 图像
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    if type(img) == type(np.array([])) and img.ndim == 3:
-        plt.imshow(img)
-    elif type(img) == type(np.array([])) and img.ndim == 2:
+    """展示图像，默认自动转化 BGR -> RGB。注意！BRG 与 RGB 是恰好相反的。第二个参数传入 0 以关闭。"""
+    # 如果是二值或灰度图像
+    if img.ndim == 2:
         plt.imshow(img, cmap="gray")
+    # 如果是彩色图像
+    if img.ndim == 3:
+        # 如果展示的是 OpenCV（BGR）
+        if OpenCV:
+            # 则要将 OpenCV 的 BGR 图像转换为 RGB 图像
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        elif not OpenCV:
+            print("Showing PIL Image")
+            plt.imshow(img)
     plt.axis("off")  # 去除坐标轴
 
 
 def imread(filename: str):
-    """用 OpenCV（BGR）读取图片文件。资源放置在 Src 文件夹下，传入文件名即可。"""
+    """用 OpenCV（BGR）读取图片文件，不涉及将 BGR 转为 RGB。资源放置在 Src 文件夹下，传入文件名即可。"""
     img = cv2.imread(f"Src/{filename}")
     imshow(img)
     return img

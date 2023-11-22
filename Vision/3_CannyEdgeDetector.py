@@ -21,7 +21,8 @@ def sobel_filter(img):
     sobel_y_kernel = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]])
     sobel_x = cv2.filter2D(img, -1, sobel_x_kernel)
     sobel_y = cv2.filter2D(img, -1, sobel_y_kernel)
-    gradient_mag = np.hypot(sobel_x, sobel_y)
+    gradient_mag = np.abs(sobel_x) + np.abs(sobel_y)
+    # gradient_mag = np.hypot(sobel_x, sobel_y)
     # 将 gradient 的大小扩大到范围允许的最大值
     gradient_mag *= 255.0 / gradient_mag.max()
     # 可以处理 x 为 0 的情况
