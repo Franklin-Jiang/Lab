@@ -52,8 +52,11 @@ blue = (0, 0, 255)
 
 imshow(img)
 # %% 提取红色
+print("Segmenting Red")
 imshow(segmentColor(img, red, error=85))
 # %% 提取绿色
+print("Segmenting Green")
 imshow(segmentColor(img, green, error=60))
 # %% 提取蓝色
+print("Segmenting Blue")
 imshow(segmentColor(img, blue, error=100))
