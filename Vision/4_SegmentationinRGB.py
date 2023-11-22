@@ -47,13 +47,13 @@ Error: {error}"""
 
 # 确定要提取的颜色
 red = (197, 59, 46)
-green = (110, 147, 83)
+green = (91, 151, 63)
 blue = (0, 0, 255)
 
 imshow(img)
 # %% 提取红色
 imshow(segmentColor(img, red, error=85))
 # %% 提取绿色
-imshow(segmentColor(img, green, error=65))
+imshow(segmentColor(img, green, error=60))
 # %% 提取蓝色
 imshow(segmentColor(img, blue, error=100))
