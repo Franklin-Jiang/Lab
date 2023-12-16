@@ -20,15 +20,23 @@ def imshow(img, OpenCV=True):
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         elif not OpenCV:
             print("Showing PIL Image")
-            plt.imshow(img)
+        plt.imshow(img)
     plt.axis("off")  # 去除坐标轴
 
 
 def imread(filename: str):
     """用 OpenCV（BGR）读取图片文件，不涉及将 BGR 转为 RGB。资源放置在 Src 文件夹下，传入文件名即可。"""
-    img = cv2.imread(f"Src/{filename}")
+    # 绝对路径、相对路径判断
+    if filename.startswith("D:") or filename.startswith("C:"):
+        img = cv2.imread(filename)
+    else:
+        img = cv2.imread(f"Src/{filename}")
     imshow(img)
     return img
+
+
+def imwrite(img: np.array, filename: str):
+    cv2.imwrite(f"D:\\Codes\\VSCode_Python\\Output\\{filename}", img)
 
 
 def im_replace(img: np.array, _from: tuple, _to: tuple, not_equal=False):
