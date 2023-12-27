@@ -36,7 +36,7 @@ def imread(filename: str):
 
 
 def imwrite(img: np.array, filename: str):
-    cv2.imwrite(f"D:\\Codes\\VSCode_Python\\Output\\{filename}", img)
+    cv2.imwrite(f"D:\\Codes\\Python\\Output\\{filename}", img)
 
 
 def im_replace(img: np.array, _from: tuple, _to: tuple, not_equal=False):
